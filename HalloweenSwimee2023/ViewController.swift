@@ -8,12 +8,116 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let userDefaults = UserDefaults.standard
+    
+    var fileNames = [String]()
+    var data = [PictureData]()
+    
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var photoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.register(UINib(nibName: "PictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.itemSize = CGSize(width: 150, height: 150)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        
+        collectionView.collectionViewLayout = layout
+        
+        photoButton.layer.cornerRadius = photoButton.bounds.height / 2
+        
+        userDefaults.register(defaults: ["fileNames": [String]()])
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        fileNames = userDefaults.array(forKey: "fileNames") as! [String]
+        
+        collectionView.reloadData()
+    }
+    
+    @IBAction func takePhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            
+            picker.allowsEditing = true
+            
+            present(picker, animated: true)
+        }
+    }
+    
+    func showAlert(title: String, message: String? = nil) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
+    func appendImageName(newFileName: String) {
+        guard var fileNames = userDefaults.array(forKey: "fileNames") as? [String] else { return }
+        
+        fileNames.append(newFileName)
+        
+        userDefaults.set(fileNames, forKey: "fileNames")
+    }
 }
 
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[.editedImage] as? UIImage else {
+            showAlert(title: "写真が保存できませんでした")
+            return
+        }
+        
+        let fileName = UUID().uuidString
+        
+        ImageManager.shared.store(image: image, forKey: fileName)
+        appendImageName(newFileName: fileName)
+        
+        dismiss(animated: true)
+    }
+}
+
+extension ViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return fileNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PictureCollectionViewCell
+        
+        let image = ImageManager.shared.retrieveImage(forKey: fileNames[indexPath.row])
+        
+        cell.imageView.image = image
+        
+        cell.layer.cornerCurve = .continuous
+        cell.layer.cornerRadius = 15
+        
+        cell.imageView.layer.cornerCurve = .continuous
+        cell.imageView.layer.cornerRadius = 10
+        
+        return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+}
