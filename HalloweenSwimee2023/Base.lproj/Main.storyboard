@@ -36,6 +36,12 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post photos!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QM6-Rw-7iU">
+                                <rect key="frame" x="97" y="500" width="199.33333333333331" height="39"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-SO-tii">
                                 <rect key="frame" x="0.0" y="59.000000000000007" width="393" height="127.66666666666669"/>
                                 <string key="text">Halloween
@@ -60,14 +66,20 @@ Album</string>
                                     <action selector="takePhoto" destination="BYZ-38-t0r" eventType="touchUpInside" id="i5W-r5-mYc"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="370279695_300996642705735_916581475805793382_n.png" id="Y7G-eX-jhF">
+                                <rect key="frame" x="150" y="360" width="127" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.48627450980392156" green="0.0" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PCc-SO-tii" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E2v-Oj-khQ"/>
+                            <constraint firstItem="QM6-Rw-7iU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QKB-1Y-Dy2"/>
                             <constraint firstItem="ok3-7v-XoC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zkx-AJ-KQQ"/>
                             <constraint firstAttribute="bottom" secondItem="ok3-7v-XoC" secondAttribute="bottom" id="cmT-yb-k8z"/>
                             <constraint firstItem="PCc-SO-tii" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gSR-fW-Jt9"/>
+                            <constraint firstItem="QM6-Rw-7iU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="93.5" id="h2d-yQ-b5V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cqq-jW-gn6" secondAttribute="bottom" constant="28" id="iZC-ir-woU"/>
                             <constraint firstItem="PCc-SO-tii" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kqg-f4-ZNI"/>
                             <constraint firstItem="ok3-7v-XoC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tGc-Xr-sqI"/>
@@ -77,6 +89,8 @@ Album</string>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ok3-7v-XoC" id="cao-dD-s6N"/>
+                        <outlet property="noPostImage" destination="Y7G-eX-jhF" id="Bac-Ct-Grc"/>
+                        <outlet property="noPostLabel" destination="QM6-Rw-7iU" id="qyV-bG-q9n"/>
                         <outlet property="photoButton" destination="cqq-jW-gn6" id="Gb9-X8-NZ1"/>
                     </connections>
                 </viewController>
@@ -86,6 +100,7 @@ Album</string>
         </scene>
     </scenes>
     <resources>
+        <image name="370279695_300996642705735_916581475805793382_n.png" width="229" height="207"/>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
     </resources>
 </document>

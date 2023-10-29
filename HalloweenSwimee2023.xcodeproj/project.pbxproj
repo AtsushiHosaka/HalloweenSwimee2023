@@ -17,6 +17,8 @@
 		6D5F07B52AEE434800EF605A /* PictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D5F07B32AEE434800EF605A /* PictureCollectionViewCell.xib */; };
 		6D5F07B72AEE44C200EF605A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F07B62AEE44C200EF605A /* ImageManager.swift */; };
 		6D5F07BB2AEE548200EF605A /* PictureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F07BA2AEE548200EF605A /* PictureData.swift */; };
+		6D5F07C12AEE760B00EF605A /* obake.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5F07C02AEE760B00EF605A /* obake.png */; };
+		6D5F07C32AEE7A1600EF605A /* five.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5F07C22AEE7A1600EF605A /* five.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		6D5F07B32AEE434800EF605A /* PictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureCollectionViewCell.xib; sourceTree = "<group>"; };
 		6D5F07B62AEE44C200EF605A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		6D5F07BA2AEE548200EF605A /* PictureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureData.swift; sourceTree = "<group>"; };
+		6D5F07C02AEE760B00EF605A /* obake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obake.png; sourceTree = "<group>"; };
+		6D5F07C22AEE7A1600EF605A /* five.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = five.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				6D5F07A72AEE3D7D00EF605A /* Assets.xcassets */,
 				6D5F07A92AEE3D7D00EF605A /* LaunchScreen.storyboard */,
 				6D5F07AC2AEE3D7D00EF605A /* Info.plist */,
+				6D5F07C02AEE760B00EF605A /* obake.png */,
+				6D5F07C22AEE7A1600EF605A /* five.png */,
 			);
 			path = HalloweenSwimee2023;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D5F07C12AEE760B00EF605A /* obake.png in Resources */,
+				6D5F07C32AEE7A1600EF605A /* five.png in Resources */,
 				6D5F07AB2AEE3D7D00EF605A /* LaunchScreen.storyboard in Resources */,
 				6D5F07B52AEE434800EF605A /* PictureCollectionViewCell.xib in Resources */,
 				6D5F07A82AEE3D7D00EF605A /* Assets.xcassets in Resources */,

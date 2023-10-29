@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     var fileNames = [String]()
     var data = [PictureData]()
     
+    @IBOutlet weak var noPostLabel: UILabel!
+    @IBOutlet weak var noPostImage: UIImageView!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var photoButton: UIButton!
     
@@ -35,12 +37,38 @@ class ViewController: UIViewController {
         photoButton.layer.cornerRadius = photoButton.bounds.height / 2
         
         userDefaults.register(defaults: ["fileNames": [String]()])
+        
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.8
+        animation.repeatCount = Float.infinity
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: noPostImage.center.x, y: noPostImage.center.y - 10))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: noPostImage.center.x, y: noPostImage.center.y + 10))
+        noPostImage.layer.add(animation, forKey: "position")
+        
+        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.duration = 1.0
+        opacityAnimation.autoreverses = true
+        opacityAnimation.fromValue = 1.0
+        opacityAnimation.toValue = 0.5
+        opacityAnimation.repeatCount = Float.infinity
+        noPostImage.layer.add(opacityAnimation, forKey: "opacity")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         fileNames = userDefaults.array(forKey: "fileNames") as! [String]
+        
+        if fileNames.isEmpty {
+            
+            noPostLabel.isHidden = false
+            noPostImage.isHidden = false
+        }else {
+            
+            noPostLabel.isHidden = true
+            noPostImage.isHidden = true
+        }
         
         collectionView.reloadData()
     }
@@ -106,7 +134,23 @@ extension ViewController: UICollectionViewDataSource {
         
         let image = ImageManager.shared.retrieveImage(forKey: fileNames[indexPath.row])
         
+        let random = Int.random(in: 0..<8)
+        
+        if random < 4 {
+            if random < 2 {
+                cell.obakeImage.setImage(UIImage(named: "obake"), for: .normal)
+                
+            } else {
+                cell.obakeImage.setImage(UIImage(named: "five"), for: .normal)
+            }
+            
+            cell.obakeImage.setTitle("", for: .normal)
+            cell.obakeImage.center = CGPoint(x: CGFloat.random(in: 40...80), y: CGFloat.random(in: 40...80))
+            
+        }
+        
         cell.imageView.image = image
+        
         
         cell.layer.cornerCurve = .continuous
         cell.layer.cornerRadius = 15
